@@ -14,17 +14,14 @@ class KnightPathFinder
 		queue = [start_pos]
 		
 		until queue.empty?
-			#queue.each do |pos|
-				#sp = PolyTreeNode.new(start_pos)
-				out = queue.shift 
-				node = PolyTreeNode.new(out)
-				moves = new_move_positions(out)
+			out = queue.shift 
+			node = PolyTreeNode.new(out)
+			moves = new_move_positions(out)
 
-				moves.each do |move|
-					queue << move
-					PolyTreeNode.new(out).children << PolyTreeNode.new(move)
-				end
-			#end
+			moves.each do |move|
+				queue << move
+				node.children << PolyTreeNode.new(move)
+			end
 		end
 	end
 
@@ -36,14 +33,16 @@ class KnightPathFinder
 			valid_moves << [(pos[0] + move[0]), (pos[1] + move[1])] 
 		end
 
-		valid_moves.select do |pair| 
+		return valid_moves.select do |pair| 
 			pair.all? {|coordinate| coordinate >= 0 && coordinate <= 7}
 		end
 	end
 
 	def new_move_positions(pos)
-		choices = KnightPathFinder.valid_moves(pos).select {|valid| !considered_positions.include?(valid) }
-		considered_positions << choices
+		choices = KnightPathFinder.valid_moves(pos).select {|move| !considered_positions.include?(move) }
+		choices.each do |choice|
+			considered_positions << choice
+		end
 		choices
 	end
 end
