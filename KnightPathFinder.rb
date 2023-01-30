@@ -1,3 +1,4 @@
+require 'byebug'
 require_relative 'PolyTreeNode.rb'
 
 class KnightPathFinder
@@ -11,7 +12,7 @@ class KnightPathFinder
 
 	def build_move_tree(start_pos)
 		queue = [start_pos]
-		
+	
 		until queue.empty?
 			out = queue.shift 
 			node = PolyTreeNode.new(out)
@@ -46,18 +47,17 @@ class KnightPathFinder
 	end
 
 	def find_path(end_pos)
+
 		return self.root_node if self.root_node.position == end_pos
 
-    self.root_node.children.each do |child|
-      search_result = child.find_path(end_pos)
-      return search_result if search_result != nil
-    end
-
+		self.root_node.children.each do |child|
+			search_result = child.find_path(end_pos)
+			return search_result if search_result != nil
+		end
     return nil
 	end
-
-
 
 end
 
 kpf = KnightPathFinder.new([0, 0])
+kpf.find_path([7,7])
