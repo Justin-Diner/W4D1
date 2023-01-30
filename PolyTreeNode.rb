@@ -1,10 +1,10 @@
 class PolyTreeNode
-	attr_accessor :position, :neighbors, :root_node
+	attr_accessor :position, :children, :root_node
 
 	def initialize(position)
 		# self.position = position
 		self.root_node = position
-		self.neighbors = []
+		self.children = []
 		
 	end
 

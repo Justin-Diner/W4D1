@@ -1,3 +1,5 @@
+require_relative 'PolyTreeNode.rb'
+
 class KnightPathFinder
 	attr_accessor :considered_positions, :root_node
 
@@ -11,7 +13,13 @@ class KnightPathFinder
 	def build_move_tree(start_pos)
 		queue = [start_pos]
 		
-		
+		until queue.empty?
+			queue.each do |pos|
+				PolyTreeNode.new(pos)
+				moves = new_move_positions(pos)
+
+			end
+		end
 	end
 
 	def self.valid_moves(pos)
