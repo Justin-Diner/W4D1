@@ -15,9 +15,18 @@ class KnightPathFinder
 		
 		until queue.empty?
 			queue.each do |pos|
-				PolyTreeNode.new(pos)
+				sp = PolyTreeNode.new(start_pos)
 				moves = new_move_positions(pos)
 
+				moves.each do |move|
+					sp.children << PolyTreeNode.new(move)
+				end
+
+				sp.children.each do |child|
+					queue << child.root_node
+				end
+					queue.shift
+				
 			end
 		end
 	end
