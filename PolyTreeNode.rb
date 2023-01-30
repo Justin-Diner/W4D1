@@ -3,8 +3,9 @@ class PolyTreeNode
 
 	def initialize(position)
 		# self.position = position
-		self.neighbors = []
 		self.root_node = position
+		self.neighbors = []
+		
 	end
 
 	def self.populate
