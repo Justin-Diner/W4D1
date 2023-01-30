@@ -11,6 +11,7 @@ class KnightPathFinder
 	def build_move_tree(start_pos)
 		queue = [start_pos]
 		
+		
 	end
 
 	def self.valid_moves(pos)
