@@ -3,7 +3,7 @@ class PolyTreeNode
 
 	def initialize(position)
 		# self.position = position
-		self.root_node = position
+		self.position = position
 		self.children = []
 		
 	end
