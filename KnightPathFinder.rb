@@ -7,24 +7,21 @@ class KnightPathFinder
 	def initialize(position)
 		 self.considered_positions = [position]
 		 self.root_node = PolyTreeNode.new(position)
-		 self.build_move_tree(root_node.position)
+		 self.build_move_tree
 	end
 
-	def build_move_tree(start_pos)
-		queue = [start_pos]
-	debugger
+	def build_move_tree
+		queue = [self.root_node]
+
 		until queue.empty?
 			out = queue.shift 
-			if out == self.root_node.position
-				node = self.root_node
-			else
-				node = PolyTreeNode.new(out)
-			end
-			moves = new_move_positions(out)
+			
+			moves = new_move_positions(out.position)
 
 			moves.each do |move|
-				queue << move
-				node.children << PolyTreeNode.new(move)
+				child = PolyTreeNode.new(move)
+				queue << child
+				out.children << child
 			end
 		end
 	end
@@ -52,13 +49,13 @@ class KnightPathFinder
 
 	def find_path(end_pos)
 
-		# return self.root_node if self.root_node.position == end_pos
+		 return self.root_node if self.root_node.position == end_pos
 
-		# self.root_node.children.each do |child|
-		# 	search_result = child.find_path(end_pos)
-		# 	return search_result if search_result != nil
-		# end
-    # return nil
+		 self.root_node.children.each do |child|
+		 	search_result = self.find_path(end_pos)
+		 	return search_result if search_result != nil
+		 end
+     return nil
 	end
 
 end
