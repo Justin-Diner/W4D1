@@ -16,7 +16,11 @@ class KnightPathFinder
 
 	def self.valid_moves(pos)
 		valid_moves = []
-		
+		changes = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]]
+		changes.each do |move|
+			valid_moves << [(pos[0] + move[0]), (pos[1], move[1])] 
+		end
+		valid_moves.select {|pair| pair.all? {|coordinate| coordinate >= 0 && coordinate <= 7}}
 	end
 
 	def new_move_positions(pos)
