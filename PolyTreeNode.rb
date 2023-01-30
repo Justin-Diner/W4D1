@@ -13,4 +13,8 @@ class PolyTreeNode
 	end
 
 	
+  def inspect
+    "Position: #{self.position} | Children: #{self.children}"
+  end
+
 end

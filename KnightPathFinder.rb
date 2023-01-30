@@ -44,6 +44,20 @@ class KnightPathFinder
 		end
 		choices
 	end
+
+	def find_path(end_pos)
+		return self.root_node if self.root_node.position == end_pos
+
+    self.root_node.children.each do |child|
+      search_result = child.find_path(end_pos)
+      return search_result if search_result != nil
+    end
+
+    return nil
+	end
+
+
+
 end
 
 kpf = KnightPathFinder.new([0, 0])
